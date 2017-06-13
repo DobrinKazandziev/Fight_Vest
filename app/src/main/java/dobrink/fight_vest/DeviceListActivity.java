@@ -19,6 +19,7 @@ import java.util.ArrayList;
  * Created by Dobrin on 13-Jun-17.
  */
 
+@SuppressWarnings("ALL")
 public class DeviceListActivity extends Activity {
     private ListView mListView;
     private DeviceListAdapter mAdapter;
@@ -28,6 +29,7 @@ public class DeviceListActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paired_devices);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mDeviceList		= getIntent().getExtras().getParcelableArrayList("device.list");
         mListView		= (ListView) findViewById(R.id.lv_paired);

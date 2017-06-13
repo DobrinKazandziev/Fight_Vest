@@ -27,7 +27,7 @@ public class BluetoothActivity extends Activity {
     private Button mPairedBtn;
     private Button mScanBtn;
     private TextView textViewMacAddress;
-    private ArrayList<BluetoothDevice> mDeviceList = new ArrayList<BluetoothDevice>();
+    private ArrayList<BluetoothDevice> mDeviceList = new ArrayList<>();
     private BluetoothAdapter mBluetoothAdapter;
     private ProgressDialog mProgressDlg;
 
@@ -69,7 +69,7 @@ public class BluetoothActivity extends Activity {
                     if (pairedDevices == null || pairedDevices.size() == 0) {
                         showToast("No Paired Devices Found");
                     } else {
-                        ArrayList<BluetoothDevice> list = new ArrayList<BluetoothDevice>();
+                        ArrayList<BluetoothDevice> list = new ArrayList<>();
                         list.addAll(pairedDevices);
                         Intent intent = new Intent(BluetoothActivity.this, DeviceListActivity.class);
                         intent.putParcelableArrayListExtra("device.list", list);
@@ -160,32 +160,23 @@ public class BluetoothActivity extends Activity {
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-
             if (BluetoothAdapter.ACTION_STATE_CHANGED.equals(action)) {
                 final int state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
-
                 if (state == BluetoothAdapter.STATE_ON) {
                     showToast("Enabled");
-
                     showEnabled();
                 }
             } else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
-                mDeviceList = new ArrayList<BluetoothDevice>();
-
+                mDeviceList = new ArrayList<>();
                 mProgressDlg.show();
             } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                 mProgressDlg.dismiss();
-
                 Intent newIntent = new Intent(BluetoothActivity.this, DeviceListActivity.class);
-
                 newIntent.putParcelableArrayListExtra("device.list", mDeviceList);
-
                 startActivity(newIntent);
             } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-
                 mDeviceList.add(device);
-
                 showToast("Found device " + device.getName());
             }
         }

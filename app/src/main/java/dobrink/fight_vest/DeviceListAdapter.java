@@ -13,6 +13,7 @@ import android.widget.TextView;
  * Created by Dobrin on 13-Jun-17.
  */
 
+@SuppressWarnings("ALL")
 public class DeviceListAdapter extends BaseAdapter{
     private LayoutInflater mInflater;
     private List<BluetoothDevice> mData;
@@ -83,6 +84,6 @@ public class DeviceListAdapter extends BaseAdapter{
     }
 
     public interface OnPairButtonClickListener {
-        public abstract void onPairButtonClick(int position);
+        void onPairButtonClick(int position);
     }
 }

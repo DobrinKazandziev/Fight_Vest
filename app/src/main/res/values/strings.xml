@@ -1,9 +1,7 @@
 <resources>
 
-    <string name="app_name">AndroBluetooth</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="app_name">Fight Vest</string>
+    <string name="text_maccaddress">Mac Address :</string>
     <string name="text_bluetooth_off">Bluetooth is Off</string>
     <string name="text_bluetooth_on">Bluetooth is On</string>
 

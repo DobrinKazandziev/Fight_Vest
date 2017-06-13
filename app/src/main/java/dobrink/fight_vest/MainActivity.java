@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +18,6 @@ public class MainActivity extends Activity {
     private Button buttonBT;
     private TextView textViewMSG;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,9 @@ public class MainActivity extends Activity {
 
         buttonBT = (Button) findViewById(R.id.buttonBT);
         textViewMSG = (TextView) findViewById(R.id.textViewMSG);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                mMessageReceiver, new IntentFilter("fightData"));
 
         buttonBT.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -40,7 +44,7 @@ public class MainActivity extends Activity {
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String message = intent.getStringExtra("message");
+            String message = intent.getStringExtra("parsedMsg");
             textViewMSG.setText(message);
             Log.d("receiver", "Got message: " + message);
         }

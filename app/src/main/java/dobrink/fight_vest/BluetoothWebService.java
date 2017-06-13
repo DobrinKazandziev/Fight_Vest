@@ -26,14 +26,16 @@ import java.util.UUID;
  */
 
 
+@SuppressWarnings("ALL")
 public class BluetoothWebService extends Service {
 
-    final int handlerState = 0;                        //used to identify handler message
-    Handler bluetoothIn;
+    private final int handlerState = 0;                        //used to identify handler message
+    private Handler bluetoothIn;
     private BluetoothAdapter btAdapter = null;
     private Set<BluetoothDevice> pairedDevices = null;
+    private static String parsedMsg = "EMPTY";
 
-    LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
+    //private LocalBroadcastManager manager = LocalBroadcastManager.getInstance(this);
     private final IBinder mBinder = new LocalBinder();
 
     private ConnectingThread mConnectingThread;
@@ -62,7 +64,14 @@ public class BluetoothWebService extends Service {
         arduinosMACaddress = sharedPref.getString("MACAddress","");
         stopThread = false;
     }
-
+    private void sendFightBroadcast(Intent intent){
+        intent.putExtra("parsedMsg", parsedMsg);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+    }
+    private void sendFightData() {
+        Intent intent = new Intent("fightData");
+        sendFightBroadcast(intent);
+    }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("BT SERVICE", "SERVICE STARTED");
@@ -82,9 +91,8 @@ public class BluetoothWebService extends Service {
                         Log.d("DATA RECEIVED", dataInput);
                         //sending string to main actity
                         Log.d("sender", "Broadcasting message");
-                        Intent intent = new Intent("ParsedStringMSG");
-                        intent.putExtra("message", parseRedData(dataInput));
-                        manager.sendBroadcast(intent);
+                        parsedMsg = parseRedData(dataInput);
+                        sendFightData();
 
                         recDataString.delete(0, recDataString.length());
                     }
