@@ -15,17 +15,137 @@
         android:layout_marginTop="16dp"
         android:text="Bluetooth"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/textViewMSG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:layout_marginTop="16dp"
+        android:text="Hit event"
         android:textAppearance="@android:style/TextAppearance.Holo.Medium"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBT" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonBT"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <Button
+        android:id="@+id/buttonSer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Service Start"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp" />
+
+    <Button
+        android:id="@+id/buttonNextRound"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:text="Next Round"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@+id/buttonStartFight"
+        app:layout_constraintRight_toLeftOf="@+id/buttonEndMatch" />
+
+    <Button
+        android:id="@+id/buttonEndMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="End"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonNextRound"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/buttonStartFight"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="8dp"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginStart="8dp" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="-8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNextRound"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewFightInfo">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewFighterOneInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fighter 1 Info"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textViewFighterOnePoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fighter 1 Points"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewFighterTwoInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fighter 2 Info"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textViewFighterTwoPoints"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fighter 2 Points"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewFightInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0.5"
+        android:text="FightInfo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMSG" />
 
 </android.support.constraint.ConstraintLayout>
